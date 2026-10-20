@@ -4,17 +4,133 @@
 @section('meta_description', 'Layanan resmi Jasa SLF (Sertifikat Laik Fungsi), audit keandalan struktur beton/baja, proteksi kebakaran hydrant sprinkler, utilitas MEP, dan penerbitan SLF di 38 provinsi di Indonesia.')
 
 @section('content')
+    <style>
+        /* CSS KHUSUS DIREKTORI WILAYAH SEPERTI TRAINING PUBT (TEMA ORANGE & HIJAU MUDA) */
+        .wilayah-section-wrap {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .island-tab-btn {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            color: #475569;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .island-tab-btn:hover {
+            border-color: #ea580c;
+            color: #ea580c;
+            background: #fff7ed;
+        }
+        .island-tab-btn.active {
+            background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+            border-color: #ea580c;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(234, 88, 12, 0.35);
+        }
+        .home-province-card {
+            background: #ffffff;
+            border: 1px solid #fed7aa;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+            margin-bottom: 16px;
+        }
+        .home-province-card:hover {
+            border-color: #f97316;
+            box-shadow: 0 6px 18px rgba(234, 88, 12, 0.08);
+        }
+        .prov-header-toggle {
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            background: #fff7ed;
+            border-bottom: 1px solid transparent;
+            flex-wrap: wrap;
+            gap: 10px;
+            transition: background 0.2s ease;
+        }
+        .prov-header-toggle.is-open {
+            background: #ffedd5;
+            border-bottom-color: #fdba74;
+        }
+        .prov-preview-bar {
+            padding: 8px 18px;
+            background: #ffffff;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 0.77rem;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .prov-preview-tag {
+            background: #f1f5f9;
+            color: #334155;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.73rem;
+            font-weight: 600;
+        }
+        .prov-drawer-body {
+            padding: 18px;
+            background: #ffffff;
+            border-top: 1px solid #fed7aa;
+        }
+        .kabkot-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 12px;
+        }
+        .home-kabkot-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+        }
+        .home-kabkot-box:hover {
+            background: #ffffff;
+            border-color: #f97316;
+            box-shadow: 0 4px 12px rgba(234, 88, 12, 0.08);
+        }
+        .home-kec-pill {
+            font-size: 0.72rem;
+            color: #334155;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            padding: 2px 7px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.15s ease;
+            display: inline-block;
+        }
+        .home-kec-pill:hover {
+            border-color: #ea580c;
+            color: #ea580c;
+            background: #fff7ed;
+        }
+    </style>
+
     <!-- HERO SLIDER SECTION (TANPA FOTO - HIGH-TECH STRUCTURAL HEALTH MONITORING & SLF CERTIFICATION HUD) -->
     <section class="gas-hero-wrapper" style="background: radial-gradient(circle at 80% 20%, rgba(234, 88, 12, 0.28) 0%, transparent 45%), radial-gradient(circle at 10% 80%, rgba(249, 115, 22, 0.18) 0%, transparent 50%), #0f172a; color: #ffffff; padding: 60px 0 70px; position: relative; overflow: hidden;">
         <!-- Background Grid Pattern -->
         <div style="position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 36px 36px; pointer-events: none;"></div>
 
         <div class="container" style="position: relative; z-index: 2;">
-            
-            <!-- Hero Slider Container -->
             <div class="hero-slider-container" id="heroSlider" style="position: relative; min-height: 480px;">
-                
-                <!-- SLIDE 1: Jasa SLF Bangunan Gedung Industri & Komersial -->
                 <div class="hero-slide active" data-slide="1" style="display: block; transition: all 0.5s ease;">
                     <div class="hero-slide-grid" style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center;">
                         <div>
@@ -34,8 +150,8 @@
                                 <a href="https://api.whatsapp.com/send?phone=6281399810272&text={{ urlencode('Halo Admin Utama Jasa SLF Indonesia, saya ingin konsultasi permohonan Sertifikat Laik Fungsi (SLF) resmi.') }}" target="_blank" class="btn-primary-green" style="background: linear-gradient(135deg, #ea580c 0%, #f97316 100%); border: 1px solid #fed7aa; box-shadow: 0 4px 18px rgba(234, 88, 12, 0.45); color: #ffffff; font-weight: 700; padding: 12px 24px; border-radius: 50px; display: inline-flex; align-items: center; gap: 10px; text-decoration: none;">
                                     <i class="bi bi-whatsapp" style="color: #25d366;"></i> Hotline Utama: 0813-9981-0272
                                 </a>
-                                <a href="#program" class="btn-outline-white" style="border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); color: #ffffff; font-weight: 700; padding: 12px 22px; border-radius: 50px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none;">
-                                    <i class="bi bi-grid-fill" style="color: #fb923c;"></i> 8 Layanan Jasa SLF
+                                <a href="#wilayah" class="btn-outline-white" style="border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); color: #ffffff; font-weight: 700; padding: 12px 22px; border-radius: 50px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none;">
+                                    <i class="bi bi-geo-alt-fill" style="color: #fb923c;"></i> Direktori 38 Provinsi
                                 </a>
                             </div>
 
@@ -55,7 +171,6 @@
                         <!-- SIMULATED STRUCTURAL HEALTH MONITORING & SLF TELEMETRY HUD -->
                         <div>
                             <div style="background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%); border: 2px solid rgba(249, 115, 22, 0.4); border-radius: 20px; padding: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.1); position: relative;">
-                                <!-- Top Status Bar -->
                                 <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.12); padding-bottom: 12px; margin-bottom: 18px;">
                                     <div style="display: flex; align-items: center; gap: 8px;">
                                         <span style="display: inline-block; width: 10px; height: 10px; background: #f97316; border-radius: 50%; box-shadow: 0 0 10px #f97316; animation: pulse 2s infinite;"></span>
@@ -64,7 +179,6 @@
                                     <span style="font-size: 0.72rem; background: rgba(34, 197, 94, 0.2); color: #86efac; padding: 3px 10px; border-radius: 12px; border: 1px solid rgba(34, 197, 94, 0.4); font-weight: 700;">100% LAIK FUNGSI &bull; STRUKTUR TERUJI</span>
                                 </div>
 
-                                <!-- Metric Cards Grid -->
                                 <div class="hud-metrics-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px;">
                                     <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(249, 115, 22, 0.25); border-radius: 12px; padding: 14px;">
                                         <div style="font-size: 0.72rem; color: #fed7aa; text-transform: uppercase; margin-bottom: 4px;">Lendutan Balok Struktur</div>
@@ -91,7 +205,6 @@
                                     </div>
                                 </div>
 
-                                <!-- Real-time Telemetry Live Feed -->
                                 <div style="background: rgba(10, 15, 26, 0.85); border-radius: 10px; padding: 12px; font-family: monospace; font-size: 0.75rem; color: #cbd5e1; border: 1px solid rgba(255,255,255,0.08);">
                                     <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
                                         <span style="color: #fb923c;">[AUDIT-SLF]</span>
@@ -110,7 +223,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <!-- Hotlines Bar -->
@@ -127,82 +239,259 @@
                     @endforeach
                 </div>
             </div>
-
         </div>
     </section>
 
-    <!-- SECTION 2: 3-TIER CASCADE REGION SELECTOR (PROVINSI -> KABKOT -> KECAMATAN) -->
-    <section class="section-py" id="wilayah" style="background: #ffffff; border-bottom: 1px solid #e2e8f0;">
+    <!-- SECTION 2: DIREKTORI WILAYAH PELATIHAN & LAYANAN JASA SLF LENGKAP SAMPAI KECAMATAN (PERSIS TRAINING PUBT) -->
+    <section class="section-py wilayah-section-wrap" id="wilayah">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header" style="text-align: center; margin-bottom: 32px;">
                 <span class="section-tag" style="background: #fff7ed; color: #ea580c; border-color: #fed7aa;">
-                    <i class="bi bi-geo-alt-fill" style="color: #ea580c;"></i> Jangkauan Seluruh Indonesia
+                    <i class="bi bi-geo-alt-fill" style="color: #ea580c;"></i> Jangkauan Layanan 38 Provinsi • 514 Kab/Kota • Seluruh Kecamatan
                 </span>
-                <h2 class="section-title">Pilih Wilayah Layanan Jasa SLF Bangunan Gedung</h2>
-                <p class="section-desc">
-                    Pilih Provinsi, Kabupaten/Kota, hingga Kecamatan Anda untuk mengakses informasi persyaratan dokumen as-built drawing, jadwal tim pengkaji teknis, dan direktori artikel keandalan gedung setempat.
+                <h2 class="section-title">Direktori Wilayah Layanan Jasa SLF Seluruh Indonesia</h2>
+                <p class="section-desc" style="max-width: 840px; margin: 0 auto;">
+                    Kami menyelenggarakan pengkajian teknis, audit keandalan struktur bangunan gedung, inspeksi proteksi kebakaran, dan penerbitan Sertifikat Laik Fungsi (SLF) di seluruh 38 provinsi di Indonesia hingga ke tingkat kabupaten, kota, dan kecamatan. Klik pada nama wilayah untuk melihat informasi persyaratan dokumen, jadwal tim pengkaji, dan artikel teknis spesifik di daerah Anda:
                 </p>
             </div>
 
-            <!-- Interactive 3-Tier Cascade Dropdown Card -->
-            <div style="max-width: 960px; margin: 0 auto; background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%); border: 2px solid #fed7aa; border-radius: 20px; padding: 36px; box-shadow: 0 12px 30px rgba(15, 23, 42, 0.15); color: #ffffff;">
-                <div style="text-align: center; margin-bottom: 24px;">
-                    <h3 style="font-size: 1.25rem; font-weight: 800; color: #ffffff; margin-bottom: 6px;">
-                        <i class="bi bi-compass-fill" style="color: #fb923c; margin-right: 8px;"></i> Navigasi Cepat Wilayah SLF
-                    </h3>
-                    <p style="font-size: 0.88rem; color: #cbd5e1;">Tersedia lengkap di 38 Provinsi, 514 Kabupaten/Kota, dan ribuan Kecamatan se-Indonesia:</p>
+            @php
+                // Build lightweight structure for Cascading Explorer & Live Search
+                $regionsExplorerData = [];
+                foreach($provinces as $pSlug => $pr) {
+                    $kabkotItems = [];
+                    foreach($pr['kabkot'] as $kk) {
+                        $kabkotItems[] = [
+                            'name' => $kk['name'],
+                            'slug' => $kk['slug'],
+                            'kecamatan' => $kk['kecamatan'] ?? [],
+                        ];
+                    }
+                    $regionsExplorerData[$pr['slug']] = [
+                        'name' => $pr['name'],
+                        'slug' => $pr['slug'],
+                        'island' => $pr['island'] ?? 'Indonesia',
+                        'total_kabkot' => $pr['total_kabkot'] ?? count($kabkotItems),
+                        'kabkot' => $kabkotItems,
+                    ];
+                }
+
+                $islands = [
+                    'Sumatera' => ['Aceh', 'Sumatera Utara', 'Sumatera Barat', 'Riau', 'Kepulauan Riau', 'Jambi', 'Sumatera Selatan', 'Kepulauan Bangka Belitung', 'Bengkulu', 'Lampung'],
+                    'Jawa' => ['DKI Jakarta', 'Jawa Barat', 'Banten', 'Jawa Tengah', 'DI Yogyakarta', 'Jawa Timur'],
+                    'Bali & Nusa Tenggara' => ['Bali', 'Nusa Tenggara Barat', 'Nusa Tenggara Timur'],
+                    'Kalimantan' => ['Kalimantan Barat', 'Kalimantan Tengah', 'Kalimantan Selatan', 'Kalimantan Timur', 'Kalimantan Utara'],
+                    'Sulawesi' => ['Sulawesi Utara', 'Gorontalo', 'Sulawesi Tengah', 'Sulawesi Barat', 'Sulawesi Selatan', 'Sulawesi Tenggara'],
+                    'Maluku & Papua' => ['Maluku', 'Maluku Utara', 'Papua', 'Papua Barat', 'Papua Selatan', 'Papua Tengah', 'Papua Pegunungan', 'Papua Barat Daya']
+                ];
+
+                // Showcase top provinces open by default so visitors immediately see Kab/Kot and Kecamatan
+                $defaultOpenProvinces = [
+                    'Aceh', 'Sumatera Utara', 'DKI Jakarta', 'Jawa Barat', 'Bali', 'Kalimantan Timur', 'Sulawesi Selatan', 'Papua'
+                ];
+            @endphp
+
+            <!-- 1. KOTAK SELEKSI CEPAT TINGKAT PROVINSI, KABKOT & KECAMATAN -->
+            <div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-radius: 18px; padding: 26px 28px; margin-bottom: 34px; box-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.45); color: #ffffff; border: 1.5px solid rgba(249, 115, 22, 0.4);">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; flex-wrap: wrap; gap: 12px;">
+                    <div>
+                        <div style="font-size: 0.76rem; font-weight: 800; color: #fb923c; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px;">
+                            <i class="bi bi-compass-fill"></i> Fitur Eksplorasi Interaktif
+                        </div>
+                        <h3 style="font-size: 1.25rem; font-weight: 800; color: #ffffff; margin: 0;">
+                            Pencarian Cepat Tingkat Provinsi, Kota & Kecamatan
+                        </h3>
+                    </div>
+                    <span style="font-size: 0.78rem; background: rgba(234, 88, 12, 0.25); color: #fed7aa; padding: 4px 14px; border-radius: 20px; border: 1px solid rgba(249, 115, 22, 0.5); font-weight: 700;">
+                        <i class="bi bi-lightning-charge-fill" style="color: #facc15;"></i> Langsung ke Halaman Wilayah
+                    </span>
                 </div>
 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 24px;">
-                    <!-- Dropdown 1: Provinsi -->
+                <!-- 3-Dropdown Grid -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) 160px; gap: 12px; align-items: end; margin-bottom: 18px;">
                     <div>
-                        <label style="font-size: 0.78rem; font-weight: 700; color: #fed7aa; text-transform: uppercase; margin-bottom: 8px; display: block;">1. Pilih Provinsi:</label>
-                        <select id="provinsiSelect" style="width: 100%; padding: 12px 14px; border-radius: 10px; background: #ffffff; color: #0f172a; font-weight: 600; font-size: 0.9rem; border: 2px solid #fb923c; outline: none; cursor: pointer;">
-                            <option value="">-- Pilih Salah Satu Provinsi --</option>
-                            @foreach($provinces as $prov)
-                                <option value="{{ $prov['slug'] }}">{{ $prov['name'] }}</option>
+                        <label style="font-size: 0.78rem; font-weight: 700; color: #cbd5e1; margin-bottom: 6px; display: block;">1. Pilih Provinsi:</label>
+                        <select id="homeProvSelect" class="form-control" style="background: #ffffff; color: #0f172a; padding: 11px 14px; border-radius: 8px; font-weight: 600; font-size: 0.88rem; width: 100%; border: none;">
+                            <option value="">-- Pilih Provinsi --</option>
+                            @foreach($provinces as $p)
+                                <option value="{{ $p['slug'] }}">{{ $p['name'] }} ({{ $p['total_kabkot'] }} Wilayah)</option>
                             @endforeach
                         </select>
                     </div>
 
-                    <!-- Dropdown 2: Kab/Kota -->
                     <div>
-                        <label style="font-size: 0.78rem; font-weight: 700; color: #fed7aa; text-transform: uppercase; margin-bottom: 8px; display: block;">2. Pilih Kabupaten / Kota:</label>
-                        <select id="kabkotSelect" disabled style="width: 100%; padding: 12px 14px; border-radius: 10px; background: #e2e8f0; color: #475569; font-weight: 600; font-size: 0.9rem; border: 2px solid #94a3b8; outline: none; cursor: not-allowed;">
-                            <option value="">-- Pilih Provinsi Dahulu --</option>
+                        <label style="font-size: 0.78rem; font-weight: 700; color: #cbd5e1; margin-bottom: 6px; display: block;">2. Pilih Kabupaten / Kota:</label>
+                        <select id="homeKabkotSelect" class="form-control" style="background: #ffffff; color: #0f172a; padding: 11px 14px; border-radius: 8px; font-weight: 600; font-size: 0.88rem; width: 100%; border: none;" disabled>
+                            <option value="">-- Pilih Kabupaten / Kota --</option>
                         </select>
                     </div>
 
-                    <!-- Dropdown 3: Kecamatan -->
                     <div>
-                        <label style="font-size: 0.78rem; font-weight: 700; color: #fed7aa; text-transform: uppercase; margin-bottom: 8px; display: block;">3. Pilih Kecamatan:</label>
-                        <select id="kecamatanSelect" disabled style="width: 100%; padding: 12px 14px; border-radius: 10px; background: #e2e8f0; color: #475569; font-weight: 600; font-size: 0.9rem; border: 2px solid #94a3b8; outline: none; cursor: not-allowed;">
-                            <option value="">-- Pilih Kab/Kota Dahulu --</option>
+                        <label style="font-size: 0.78rem; font-weight: 700; color: #cbd5e1; margin-bottom: 6px; display: block;">3. Pilih Kecamatan:</label>
+                        <select id="homeKecamatanSelect" class="form-control" style="background: #ffffff; color: #0f172a; padding: 11px 14px; border-radius: 8px; font-weight: 600; font-size: 0.88rem; width: 100%; border: none;" disabled>
+                            <option value="">-- Pilih Kecamatan --</option>
                         </select>
+                    </div>
+
+                    <div>
+                        <button type="button" id="homeGoRegionBtn" style="width: 100%; justify-content: center; padding: 12px 16px; font-size: 0.88rem; box-shadow: 0 4px 16px rgba(234, 88, 12, 0.45); white-space: nowrap; background: linear-gradient(135deg, #ea580c 0%, #f97316 100%); color: #ffffff; font-weight: 800; border-radius: 8px; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
+                            <i class="bi bi-box-arrow-up-right"></i> Buka Wilayah
+                        </button>
                     </div>
                 </div>
 
-                <div style="text-align: center;">
-                    <button id="btnGoWilayah" disabled style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); color: #ffffff; font-weight: 800; font-size: 0.95rem; padding: 12px 32px; border-radius: 50px; border: none; cursor: not-allowed; opacity: 0.6; display: inline-flex; align-items: center; gap: 8px; transition: all 0.25s ease;">
-                        <i class="bi bi-arrow-right-circle-fill"></i> Buka Halaman Wilayah Terpilih
+                <!-- Live Keyword Search Filter -->
+                <div style="position: relative;">
+                    <i class="bi bi-search" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #94a3b8;"></i>
+                    <input type="text" id="homeLiveRegionSearch" class="form-control" placeholder="Atau ketik nama Kota, Kabupaten, atau Kecamatan (misal: Bandung, Karawang, Cikarang, Surabaya, Medan, Balikpapan)..." style="background: rgba(255,255,255,0.96); color: #0f172a; padding: 11px 16px 11px 42px; border-radius: 8px; font-size: 0.88rem; width: 100%; border: none;">
+                    
+                    <!-- Search Results Popup Box -->
+                    <div id="homeSearchResultsBox" style="display: none; position: absolute; left: 0; right: 0; top: 105%; background: #ffffff; border-radius: 12px; box-shadow: 0 14px 35px rgba(0,0,0,0.25); z-index: 100; max-height: 320px; overflow-y: auto; padding: 10px; border: 1px solid #cbd5e1;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. ISLAND FILTER TABS & GLOBAL CONTROLS -->
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 12px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;" id="islandFilterTabs">
+                    <button type="button" class="island-tab-btn active" data-island="all">
+                        Semua Pulau (38)
+                    </button>
+                    @foreach($islands as $iName => $pList)
+                        <button type="button" class="island-tab-btn" data-island="{{ Str::slug($iName) }}">
+                            {{ $iName }} ({{ count($pList) }})
+                        </button>
+                    @endforeach
+                </div>
+
+                <div style="display: flex; gap: 8px;">
+                    <button type="button" id="btnExpandAllProvs" style="font-size: 0.78rem; font-weight: 700; color: #ea580c; background: #fff7ed; border: 1px solid #fed7aa; padding: 7px 14px; border-radius: 6px; cursor: pointer;">
+                        <i class="bi bi-arrows-expand"></i> Buka Semua Kab/Kota & Kec
+                    </button>
+                    <button type="button" id="btnCollapseAllProvs" style="font-size: 0.78rem; font-weight: 700; color: #64748b; background: #f1f5f9; border: 1px solid #cbd5e1; padding: 7px 14px; border-radius: 6px; cursor: pointer;">
+                        <i class="bi bi-arrows-collapse"></i> Tutup Semua
                     </button>
                 </div>
             </div>
 
-            <!-- Quick Province Grid Pills -->
-            <div style="margin-top: 40px;">
-                <div style="font-size: 0.85rem; font-weight: 700; color: #64748b; text-transform: uppercase; text-align: center; margin-bottom: 16px;">
-                    Akses Cepat 38 Provinsi Utama di Indonesia:
-                </div>
-                <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 1100px; margin: 0 auto;">
-                    @foreach($provinces as $prov)
-                        <a href="{{ route('wilayah.provinsi', $prov['slug']) }}" style="background: #fff7ed; color: #ea580c; border: 1px solid #fed7aa; padding: 6px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; text-decoration: none; transition: all 0.2s ease;">
-                            {{ $prov['name'] }}
-                        </a>
-                    @endforeach
-                </div>
-            </div>
+            <!-- 3. ISLAND GROUPED PROVINCES WITH KAB/KOT & KECAMATAN DETAILS -->
+            @foreach($islands as $islandName => $provNames)
+                <div class="island-group-block" data-island="{{ Str::slug($islandName) }}" style="margin-bottom: 34px;">
+                    <h3 style="font-size: 1.18rem; font-weight: 800; color: #0f172a; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; border-bottom: 2px solid #fed7aa; padding-bottom: 8px;">
+                        <i class="bi bi-geo-alt-fill" style="color: #ea580c;"></i> Wilayah {{ $islandName }}
+                    </h3>
 
+                    <div style="display: flex; flex-direction: column; gap: 14px;">
+                        @foreach($provNames as $pName)
+                            @php
+                                $provObj = null;
+                                foreach($provinces as $pr) {
+                                    if(strtolower(trim($pr['name'])) === strtolower(trim($pName))) {
+                                        $provObj = $pr;
+                                        break;
+                                    }
+                                }
+                                $isOpen = in_array($pName, $defaultOpenProvinces);
+                            @endphp
+                            @if($provObj)
+                                <div class="home-province-card">
+                                    <!-- Card Header (Click to toggle accordion) -->
+                                    <div class="prov-header-toggle {{ $isOpen ? 'is-open' : '' }}">
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <div style="width: 34px; height: 34px; background: #ffffff; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #ea580c; font-size: 0.95rem; border: 1px solid #fed7aa;">
+                                                <i class="bi bi-map-fill"></i>
+                                            </div>
+                                            <div>
+                                                <span style="font-size: 0.98rem; font-weight: 800; color: #0f172a;">{{ $provObj['name'] }}</span>
+                                                <span class="badge" style="font-size: 0.74rem; font-weight: 700; color: #c2410c; background: #fff7ed; padding: 3px 8px; border-radius: 12px; margin-left: 6px; border: 1px solid #fed7aa;">
+                                                    {{ $provObj['total_kabkot'] }} Kab/Kota • Tingkat Kecamatan
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <a href="{{ url('/wilayah/' . $provObj['slug']) }}" class="btn-sm" style="font-size: 0.78rem; font-weight: 700; color: #ea580c; background: #ffffff; border: 1px solid #fed7aa; padding: 5px 12px; border-radius: 6px; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;" onclick="event.stopPropagation();">
+                                                <span>Buka Provinsi</span> <i class="bi bi-box-arrow-up-right"></i>
+                                            </a>
+                                            <button type="button" class="btn-toggle-icon" style="background: none; border: none; font-size: 0.86rem; color: #64748b; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+                                                <span class="toggle-text" style="font-size: 0.76rem; font-weight: 700; color: {{ $isOpen ? '#ea580c' : '#64748b' }};">{{ $isOpen ? 'Sembunyikan' : 'Lihat Kab/Kot & Kec' }}</span>
+                                                <i class="bi bi-chevron-down toggle-chevron" style="transition: transform 0.25s ease; transform: {{ $isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }};"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Quick Preview Bar (Visible directly on card) -->
+                                    <div class="prov-preview-bar">
+                                        <span style="font-weight: 700; color: #c2410c; display: flex; align-items: center; gap: 4px;">
+                                            <i class="bi bi-pin-map-fill"></i> Cakupan:
+                                        </span>
+                                        @foreach(array_slice($provObj['kabkot'], 0, 6) as $kkPre)
+                                            <span class="prov-preview-tag">{{ $kkPre['name'] }}</span>
+                                        @endforeach
+                                        @if(count($provObj['kabkot']) > 6)
+                                            <span style="font-size: 0.72rem; color: #ea580c; font-weight: 700;">+{{ count($provObj['kabkot']) - 6 }} Kab/Kota lainnya</span>
+                                        @endif
+                                    </div>
+
+                                    <!-- Card Body (Kabupaten & Kecamatan) -->
+                                    <div class="prov-drawer-body" style="display: {{ $isOpen ? 'block' : 'none' }};">
+                                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
+                                            <div style="font-size: 0.84rem; font-weight: 800; color: #1e293b;">
+                                                <i class="bi bi-buildings" style="color: #ea580c; margin-right: 6px;"></i> Daftar Lengkap Kabupaten, Kota, & Kecamatan di {{ $provObj['name'] }}:
+                                            </div>
+                                            <a href="{{ url('/wilayah/' . $provObj['slug']) }}" style="font-size: 0.78rem; color: #ea580c; font-weight: 700; text-decoration: none;">
+                                                Buka Panduan & Artikel Lengkap {{ $provObj['name'] }} &rarr;
+                                            </a>
+                                        </div>
+
+                                        <!-- Grid of Kab/Kot Cards with Kecamatan Pills -->
+                                        <div class="kabkot-card-grid">
+                                            @foreach($provObj['kabkot'] as $kk)
+                                                @php
+                                                    $kkKecList = $kk['kecamatan'] ?? [];
+                                                    $kabkotUrl = url('/wilayah/' . $provObj['slug'] . '/' . $kk['slug']);
+                                                @endphp
+                                                <div class="home-kabkot-box">
+                                                    <div>
+                                                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                                                            <a href="{{ $kabkotUrl }}" style="font-size: 0.88rem; font-weight: 800; color: #0f172a; text-decoration: none; display: flex; align-items: center; gap: 6px;" title="Lihat layanan Jasa SLF di {{ $kk['name'] }}">
+                                                                <i class="bi bi-geo-alt-fill" style="color: #ea580c;"></i> {{ $kk['name'] }}
+                                                            </a>
+                                                            <span style="font-size: 0.68rem; font-weight: 700; color: #c2410c; background: #fff7ed; padding: 2px 6px; border-radius: 4px; border: 1px solid #fed7aa;">
+                                                                {{ count($kkKecList) }} Kec
+                                                            </span>
+                                                        </div>
+
+                                                        <!-- Kecamatan Pills -->
+                                                        <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px;">
+                                                            @foreach($kkKecList as $kec)
+                                                                @php
+                                                                    $kecSlug = Str::slug($kec);
+                                                                    $kecUrl = url('/wilayah/' . $provObj['slug'] . '/' . $kk['slug'] . '/' . $kecSlug);
+                                                                @endphp
+                                                                <a href="{{ $kecUrl }}" class="home-kec-pill" title="Jasa SLF Bangunan Gedung Kecamatan {{ $kec }}, {{ $kk['name'] }}">
+                                                                    {{ $kec }}
+                                                                </a>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+
+                                                    <div style="border-top: 1px dashed #fed7aa; padding-top: 8px; margin-top: 6px;">
+                                                        <a href="{{ $kabkotUrl }}" style="font-size: 0.76rem; font-weight: 700; color: #ea580c; text-decoration: none; display: flex; align-items: center; justify-content: space-between;">
+                                                            <span>Lihat Panduan & Artikel {{ $kk['name'] }}</span>
+                                                            <i class="bi bi-chevron-right"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+            @endforeach
         </div>
     </section>
 
@@ -483,97 +772,256 @@
             </div>
         </div>
     </section>
+@endsection
 
-    <!-- SCRIPT FOR 3-TIER CASCADE REGION SELECTOR -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const provincesData = @json($provinces);
-            const provSelect = document.getElementById('provinsiSelect');
-            const kabkotSelect = document.getElementById('kabkotSelect');
-            const kecSelect = document.getElementById('kecamatanSelect');
-            const btnGo = document.getElementById('btnGoWilayah');
+@push('scripts')
+<script>
+    (function() {
+        // ==========================================
+        // HOME DIREKTORI WILAYAH ACCORDION & EXPLORER
+        // ==========================================
+        const regionsData = @json($regionsExplorerData ?? []);
 
-            let currentProvSlug = '';
-            let currentKabkotSlug = '';
-            let currentKecSlug = '';
+        // 1. Accordion Toggle for Province Cards
+        document.querySelectorAll('.prov-header-toggle').forEach(header => {
+            header.addEventListener('click', function(e) {
+                if (e.target.closest('a')) return;
 
-            provSelect.addEventListener('change', function () {
-                currentProvSlug = this.value;
-                kabkotSelect.innerHTML = '<option value="">-- Pilih Kabupaten / Kota --</option>';
-                kecSelect.innerHTML = '<option value="">-- Pilih Kab/Kota Dahulu --</option>';
-                kecSelect.disabled = true;
-                kecSelect.style.cursor = 'not-allowed';
-                kecSelect.style.background = '#e2e8f0';
+                const card = this.closest('.home-province-card');
+                const drawer = card.querySelector('.prov-drawer-body');
+                const chevron = card.querySelector('.toggle-chevron');
+                const toggleText = card.querySelector('.toggle-text');
+                const isOpen = drawer.style.display === 'block';
 
-                if (!currentProvSlug) {
-                    kabkotSelect.disabled = true;
-                    kabkotSelect.style.cursor = 'not-allowed';
-                    kabkotSelect.style.background = '#e2e8f0';
-                    btnGo.disabled = true;
-                    btnGo.style.cursor = 'not-allowed';
-                    btnGo.style.opacity = '0.6';
-                    return;
-                }
-
-                const selectedProv = provincesData.find(p => p.slug === currentProvSlug);
-                if (selectedProv && selectedProv.kabkot) {
-                    selectedProv.kabkot.forEach(k => {
-                        const opt = document.createElement('option');
-                        opt.value = k.slug;
-                        opt.textContent = k.name;
-                        kabkotSelect.appendChild(opt);
-                    });
-                    kabkotSelect.disabled = false;
-                    kabkotSelect.style.cursor = 'pointer';
-                    kabkotSelect.style.background = '#ffffff';
-                }
-
-                btnGo.disabled = false;
-                btnGo.style.cursor = 'pointer';
-                btnGo.style.opacity = '1';
-            });
-
-            kabkotSelect.addEventListener('change', function () {
-                currentKabkotSlug = this.value;
-                kecSelect.innerHTML = '<option value="">-- Pilih Kecamatan --</option>';
-
-                if (!currentKabkotSlug) {
-                    kecSelect.disabled = true;
-                    kecSelect.style.cursor = 'not-allowed';
-                    kecSelect.style.background = '#e2e8f0';
-                    return;
-                }
-
-                const selectedProv = provincesData.find(p => p.slug === currentProvSlug);
-                if (selectedProv && selectedProv.kabkot) {
-                    const selectedKab = selectedProv.kabkot.find(k => k.slug === currentKabkotSlug);
-                    if (selectedKab && selectedKab.kecamatan) {
-                        selectedKab.kecamatan.forEach(kc => {
-                            const opt = document.createElement('option');
-                            opt.value = kc.slug;
-                            opt.textContent = kc.name;
-                            kecSelect.appendChild(opt);
-                        });
-                        kecSelect.disabled = false;
-                        kecSelect.style.cursor = 'pointer';
-                        kecSelect.style.background = '#ffffff';
+                if (isOpen) {
+                    drawer.style.display = 'none';
+                    if (chevron) chevron.style.transform = 'rotate(0deg)';
+                    if (toggleText) {
+                        toggleText.textContent = 'Lihat Kab/Kot & Kec';
+                        toggleText.style.color = '#64748b';
                     }
-                }
-            });
-
-            kecSelect.addEventListener('change', function () {
-                currentKecSlug = this.value;
-            });
-
-            btnGo.addEventListener('click', function () {
-                if (currentKecSlug && currentKabkotSlug && currentProvSlug) {
-                    window.location.href = `/wilayah/${currentProvSlug}/${currentKabkotSlug}/${currentKecSlug}`;
-                } else if (currentKabkotSlug && currentProvSlug) {
-                    window.location.href = `/wilayah/${currentProvSlug}/${currentKabkotSlug}`;
-                } else if (currentProvSlug) {
-                    window.location.href = `/wilayah/${currentProvSlug}`;
+                    this.classList.remove('is-open');
+                } else {
+                    drawer.style.display = 'block';
+                    if (chevron) chevron.style.transform = 'rotate(180deg)';
+                    if (toggleText) {
+                        toggleText.textContent = 'Sembunyikan';
+                        toggleText.style.color = '#ea580c';
+                    }
+                    this.classList.add('is-open');
                 }
             });
         });
-    </script>
-@endsection
+
+        // 2. Expand All & Collapse All
+        const btnExpandAll = document.getElementById('btnExpandAllProvs');
+        const btnCollapseAll = document.getElementById('btnCollapseAllProvs');
+
+        if (btnExpandAll) {
+            btnExpandAll.addEventListener('click', () => {
+                document.querySelectorAll('.prov-drawer-body').forEach(d => d.style.display = 'block');
+                document.querySelectorAll('.toggle-chevron').forEach(c => c.style.transform = 'rotate(180deg)');
+                document.querySelectorAll('.toggle-text').forEach(t => {
+                    t.textContent = 'Sembunyikan';
+                    t.style.color = '#ea580c';
+                });
+                document.querySelectorAll('.prov-header-toggle').forEach(h => h.classList.add('is-open'));
+            });
+        }
+        if (btnCollapseAll) {
+            btnCollapseAll.addEventListener('click', () => {
+                document.querySelectorAll('.prov-drawer-body').forEach(d => d.style.display = 'none');
+                document.querySelectorAll('.toggle-chevron').forEach(c => c.style.transform = 'rotate(0deg)');
+                document.querySelectorAll('.toggle-text').forEach(t => {
+                    t.textContent = 'Lihat Kab/Kot & Kec';
+                    t.style.color = '#64748b';
+                });
+                document.querySelectorAll('.prov-header-toggle').forEach(h => h.classList.remove('is-open'));
+            });
+        }
+
+        // 3. Island Filter Tabs
+        const islandTabs = document.querySelectorAll('.island-tab-btn');
+        const islandGroups = document.querySelectorAll('.island-group-block');
+
+        islandTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                islandTabs.forEach(t => {
+                    t.style.background = '#f8fafc';
+                    t.style.borderColor = '#cbd5e1';
+                    t.style.color = '#475569';
+                    t.classList.remove('active');
+                });
+                this.style.background = 'linear-gradient(135deg, #ea580c 0%, #f97316 100%)';
+                this.style.borderColor = '#ea580c';
+                this.style.color = '#ffffff';
+                this.classList.add('active');
+
+                const targetIsland = this.getAttribute('data-island');
+                islandGroups.forEach(grp => {
+                    if (targetIsland === 'all' || grp.getAttribute('data-island') === targetIsland) {
+                        grp.style.display = 'block';
+                    } else {
+                        grp.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Helper slugify
+        function slugify(text) {
+            return text.toString().toLowerCase()
+                .replace(/\s+/g, '-')
+                .replace(/[^\w\-]+/g, '')
+                .replace(/\-\-+/g, '-')
+                .replace(/^-+/, '')
+                .replace(/-+$/, '');
+        }
+
+        // 4. Cascading Selectors (Prov -> Kabkot -> Kecamatan)
+        const homeProvSelect = document.getElementById('homeProvSelect');
+        const homeKabkotSelect = document.getElementById('homeKabkotSelect');
+        const homeKecamatanSelect = document.getElementById('homeKecamatanSelect');
+        const homeGoBtn = document.getElementById('homeGoRegionBtn');
+
+        if (homeProvSelect && homeKabkotSelect && homeKecamatanSelect && homeGoBtn) {
+            homeProvSelect.addEventListener('change', function() {
+                const pSlug = this.value;
+                homeKabkotSelect.innerHTML = '<option value="">-- Pilih Kabupaten / Kota --</option>';
+                homeKecamatanSelect.innerHTML = '<option value="">-- Pilih Kecamatan --</option>';
+                homeKecamatanSelect.disabled = true;
+
+                if (!pSlug || !regionsData[pSlug]) {
+                    homeKabkotSelect.disabled = true;
+                    return;
+                }
+
+                homeKabkotSelect.disabled = false;
+                const kabkots = regionsData[pSlug].kabkot || [];
+                kabkots.forEach(k => {
+                    const opt = document.createElement('option');
+                    opt.value = k.slug;
+                    opt.textContent = k.name;
+                    homeKabkotSelect.appendChild(opt);
+                });
+            });
+
+            homeKabkotSelect.addEventListener('change', function() {
+                const pSlug = homeProvSelect.value;
+                const kSlug = this.value;
+                homeKecamatanSelect.innerHTML = '<option value="">-- Pilih Kecamatan --</option>';
+
+                if (!kSlug || !regionsData[pSlug]) {
+                    homeKecamatanSelect.disabled = true;
+                    return;
+                }
+
+                const kabkot = (regionsData[pSlug].kabkot || []).find(k => k.slug === kSlug);
+                if (!kabkot || !kabkot.kecamatan || kabkot.kecamatan.length === 0) {
+                    homeKecamatanSelect.disabled = true;
+                    return;
+                }
+
+                homeKecamatanSelect.disabled = false;
+                kabkot.kecamatan.forEach(kc => {
+                    const kcName = typeof kc === 'string' ? kc : kc.name;
+                    const kcSlug = typeof kc === 'string' ? slugify(kc) : kc.slug;
+                    const opt = document.createElement('option');
+                    opt.value = kcSlug;
+                    opt.textContent = 'Kec. ' + kcName;
+                    homeKecamatanSelect.appendChild(opt);
+                });
+            });
+
+            homeGoBtn.addEventListener('click', function() {
+                const pSlug = homeProvSelect.value;
+                const kSlug = homeKabkotSelect.value;
+                const kcSlug = homeKecamatanSelect.value;
+
+                if (!pSlug) {
+                    alert('Silakan pilih provinsi terlebih dahulu.');
+                    return;
+                }
+
+                if (kcSlug) {
+                    window.location.href = `/wilayah/${pSlug}/${kSlug}/${kcSlug}`;
+                } else if (kSlug) {
+                    window.location.href = `/wilayah/${pSlug}/${kSlug}`;
+                } else {
+                    window.location.href = `/wilayah/${pSlug}`;
+                }
+            });
+        }
+
+        // 5. Live Search Input
+        const liveSearchInput = document.getElementById('homeLiveRegionSearch');
+        const searchResultsBox = document.getElementById('homeSearchResultsBox');
+
+        if (liveSearchInput && searchResultsBox) {
+            liveSearchInput.addEventListener('input', function() {
+                const q = this.value.toLowerCase().trim();
+                if (q.length < 2) {
+                    searchResultsBox.style.display = 'none';
+                    searchResultsBox.innerHTML = '';
+                    return;
+                }
+
+                let matches = [];
+                Object.values(regionsData).forEach(p => {
+                    (p.kabkot || []).forEach(k => {
+                        if (k.name.toLowerCase().includes(q)) {
+                            matches.push({
+                                type: 'Kabupaten/Kota',
+                                label: k.name + ' (' + p.name + ')',
+                                url: `/wilayah/${p.slug}/${k.slug}`,
+                                badge: 'Kab/Kot'
+                            });
+                        }
+                        (k.kecamatan || []).forEach(kc => {
+                            const kcName = typeof kc === 'string' ? kc : kc.name;
+                            const kcSlug = typeof kc === 'string' ? slugify(kc) : kc.slug;
+                            if (kcName.toLowerCase().includes(q)) {
+                                matches.push({
+                                    type: 'Kecamatan',
+                                    label: 'Kec. ' + kcName + ', ' + k.name + ' (' + p.name + ')',
+                                    url: `/wilayah/${p.slug}/${k.slug}/${kcSlug}`,
+                                    badge: 'Kecamatan'
+                                });
+                            }
+                        });
+                    });
+                });
+
+                if (matches.length === 0) {
+                    searchResultsBox.innerHTML = '<div style="padding: 12px; color: #64748b; font-size: 0.85rem; text-align: center;">Tidak ada wilayah yang cocok dengan "' + q + '"</div>';
+                    searchResultsBox.style.display = 'block';
+                    return;
+                }
+
+                let html = '<div style="font-size: 0.74rem; font-weight: 700; color: #ea580c; padding: 6px 10px; border-bottom: 1px solid #f1f5f9;">Ditemukan ' + matches.length + ' wilayah terkait:</div>';
+                matches.slice(0, 15).forEach(m => {
+                    html += `
+                        <a href="${m.url}" style="padding: 9px 12px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: #1e293b; font-size: 0.84rem; border-bottom: 1px solid #f8fafc; transition: background 0.15s ease;">
+                            <span><i class="bi bi-geo-alt-fill" style="color: #ea580c; margin-right: 6px;"></i> ${m.label}</span>
+                            <span style="font-size: 0.7rem; font-weight: 700; color: #c2410c; background: #fff7ed; padding: 2px 6px; border-radius: 4px; border: 1px solid #fed7aa;">${m.badge}</span>
+                        </a>
+                    `;
+                });
+                if (matches.length > 15) {
+                    html += '<div style="padding: 8px; text-align: center; font-size: 0.75rem; color: #64748b;">...dan ' + (matches.length - 15) + ' wilayah lainnya.</div>';
+                }
+
+                searchResultsBox.innerHTML = html;
+                searchResultsBox.style.display = 'block';
+            });
+
+            // Close on click outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('#homeLiveRegionSearch') && !e.target.closest('#homeSearchResultsBox')) {
+                    searchResultsBox.style.display = 'none';
+                }
+            });
+        }
+    })();
+</script>
+@endpush
